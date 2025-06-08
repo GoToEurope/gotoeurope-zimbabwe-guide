@@ -266,13 +266,13 @@ const Index = () => {
           <div className="text-center mt-12">
             <p className="text-blue-100 mb-4">Follow us on social media:</p>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" className="border-white hover:bg-white text-blue-700">
+              <Button variant="outline" className="border-white text-gray-50 bg-blue-600 hover:bg-blue-500">
                 Facebook
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" className="border-white text-white hover:text-primary bg-red-500 hover:bg-red-400">
                 Instagram
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" className="border-white text-white hover:text-primary bg-sky-600 hover:bg-sky-500">
                 LinkedIn
               </Button>
             </div>
