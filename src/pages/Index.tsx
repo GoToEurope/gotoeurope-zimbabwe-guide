@@ -1,65 +1,87 @@
 import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
 const Index = () => {
-  const services = [
-    {
-      icon: <GraduationCap className="h-8 w-8 text-primary" />,
-      title: "University Matching & Admission Support",
-      description: "Find the perfect university match for your academic goals and career aspirations."
-    },
-    {
-      icon: <Plane className="h-8 w-8 text-primary" />,
-      title: "Visa & Migration Assistance",
-      description: "Complete support through the visa application and migration process."
-    },
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      title: "Pre-Departure Language & Cultural Training",
-      description: "Prepare yourself for life in Europe with language and cultural orientation."
-    },
-    {
-      icon: <Star className="h-8 w-8 text-primary" />,
-      title: "Accommodation & Airport Pickup",
-      description: "Secure housing and smooth arrival assistance in your destination country."
-    }
-  ];
-
-  const steps = [
-    "Submit Your Interest via Online Form",
-    "Book a Free 15-minute Zoom Consultation",
-    "Choose Your University with Our Guidance",
-    "We Handle Application Processing",
-    "Get Support for Visa & Travel Logistics",
-    "Begin Your Study & Work Journey in Europe"
-  ];
-
-  const universities = [
-    { name: "Sofia University 'St. Kliment Ohridski'", url: "https://www.uni-sofia.bg/" },
-    { name: "Medical University – Sofia", url: "https://www.mu-sofia.bg/" },
-    { name: "Technical University of Sofia", url: "https://www.tu-sofia.bg/" },
-    { name: "University of National and World Economy (UNWE)", url: "https://www.unwe.bg/" },
-    { name: "American University in Bulgaria (AUBG)", url: "https://www.aubg.edu/" },
-    { name: "Medical University – Plovdiv", url: "https://www.mu-plovdiv.bg/" },
-    { name: "Medical University – Varna", url: "https://www.mu-varna.bg/" },
-    { name: "Plovdiv University 'Paisii Hilendarski'", url: "https://uni-plovdiv.bg/" },
-    { name: "Varna University of Economics", url: "https://www.ue-varna.bg/" },
-    { name: "South-West University 'Neofit Rilski'", url: "https://www.swu.bg/" },
-    { name: "University of Architecture, Civil Engineering and Geodesy (UACEG)", url: "https://www.uacg.bg/" },
-    { name: "University of Chemical Technology and Metallurgy (UCTM)", url: "https://uctm.edu/" },
-    { name: "Agricultural University – Plovdiv", url: "https://www.au-plovdiv.bg/" },
-    { name: "University of Forestry – Sofia", url: "https://www.ltu.bg/" },
-    { name: "University of Food Technologies – Plovdiv", url: "https://uft-plovdiv.bg/" },
-    { name: "New Bulgarian University (NBU)", url: "https://www.nbu.bg/" },
-    { name: "Burgas Free University (BFU)", url: "https://www.bfu.bg/" },
-    { name: "University of Ruse 'Angel Kanchev'", url: "https://www.uni-ruse.bg/" },
-    { name: "Naval Academy 'Nikola Vaptsarov'", url: "https://www.naval-acad.bg/" },
-    { name: "Trakia University – Stara Zagora", url: "https://www.uni-sz.bg/" }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const services = [{
+    icon: <GraduationCap className="h-8 w-8 text-primary" />,
+    title: "University Matching & Admission Support",
+    description: "Find the perfect university match for your academic goals and career aspirations."
+  }, {
+    icon: <Plane className="h-8 w-8 text-primary" />,
+    title: "Visa & Migration Assistance",
+    description: "Complete support through the visa application and migration process."
+  }, {
+    icon: <Users className="h-8 w-8 text-primary" />,
+    title: "Pre-Departure Language & Cultural Training",
+    description: "Prepare yourself for life in Europe with language and cultural orientation."
+  }, {
+    icon: <Star className="h-8 w-8 text-primary" />,
+    title: "Accommodation & Airport Pickup",
+    description: "Secure housing and smooth arrival assistance in your destination country."
+  }];
+  const steps = ["Submit Your Interest via Online Form", "Book a Free 15-minute Zoom Consultation", "Choose Your University with Our Guidance", "We Handle Application Processing", "Get Support for Visa & Travel Logistics", "Begin Your Study & Work Journey in Europe"];
+  const universities = [{
+    name: "Sofia University 'St. Kliment Ohridski'",
+    url: "https://www.uni-sofia.bg/"
+  }, {
+    name: "Medical University – Sofia",
+    url: "https://www.mu-sofia.bg/"
+  }, {
+    name: "Technical University of Sofia",
+    url: "https://www.tu-sofia.bg/"
+  }, {
+    name: "University of National and World Economy (UNWE)",
+    url: "https://www.unwe.bg/"
+  }, {
+    name: "American University in Bulgaria (AUBG)",
+    url: "https://www.aubg.edu/"
+  }, {
+    name: "Medical University – Plovdiv",
+    url: "https://www.mu-plovdiv.bg/"
+  }, {
+    name: "Medical University – Varna",
+    url: "https://www.mu-varna.bg/"
+  }, {
+    name: "Plovdiv University 'Paisii Hilendarski'",
+    url: "https://uni-plovdiv.bg/"
+  }, {
+    name: "Varna University of Economics",
+    url: "https://www.ue-varna.bg/"
+  }, {
+    name: "South-West University 'Neofit Rilski'",
+    url: "https://www.swu.bg/"
+  }, {
+    name: "University of Architecture, Civil Engineering and Geodesy (UACEG)",
+    url: "https://www.uacg.bg/"
+  }, {
+    name: "University of Chemical Technology and Metallurgy (UCTM)",
+    url: "https://uctm.edu/"
+  }, {
+    name: "Agricultural University – Plovdiv",
+    url: "https://www.au-plovdiv.bg/"
+  }, {
+    name: "University of Forestry – Sofia",
+    url: "https://www.ltu.bg/"
+  }, {
+    name: "University of Food Technologies – Plovdiv",
+    url: "https://uft-plovdiv.bg/"
+  }, {
+    name: "New Bulgarian University (NBU)",
+    url: "https://www.nbu.bg/"
+  }, {
+    name: "Burgas Free University (BFU)",
+    url: "https://www.bfu.bg/"
+  }, {
+    name: "University of Ruse 'Angel Kanchev'",
+    url: "https://www.uni-ruse.bg/"
+  }, {
+    name: "Naval Academy 'Nikola Vaptsarov'",
+    url: "https://www.naval-acad.bg/"
+  }, {
+    name: "Trakia University – Stara Zagora",
+    url: "https://www.uni-sz.bg/"
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-blue-600 to-blue-800 text-white py-20 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -97,8 +119,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
+            {services.map((service, index) => <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 p-3 bg-blue-50 rounded-full w-fit">
                     {service.icon}
@@ -110,8 +131,7 @@ const Index = () => {
                     {service.description}
                   </CardDescription>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           <div className="mt-12 text-center">
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -158,14 +178,12 @@ const Index = () => {
             <p className="text-xl text-gray-600">Your journey to European education in 6 simple steps</p>
           </div>
           <div className="space-y-8">
-            {steps.map((step, index) => (
-              <div key={index} className="flex items-center gap-6 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            {steps.map((step, index) => <div key={index} className="flex items-center gap-6 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
                   {index + 1}
                 </div>
                 <p className="text-lg text-gray-800">{step}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -182,22 +200,15 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {universities.map((university, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+            {universities.map((university, index) => <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-gray-900 mb-3">{university.name}</h3>
-                  <a 
-                    href={university.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:text-blue-700 font-medium"
-                  >
+                  <a href={university.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-blue-700 font-medium">
                     Visit Website
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </a>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -211,9 +222,7 @@ const Index = () => {
           <Card className="max-w-4xl mx-auto bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-l-primary">
             <CardContent className="p-8 text-center">
               <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
-                ))}
+                {[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />)}
               </div>
               <blockquote className="text-xl italic text-gray-700 mb-4">
                 "Thanks to GoToEurope.co.zw, I'm now studying Medicine at Medical University in Plovdiv. Their service was fast, personal, and life-changing!"
@@ -257,7 +266,7 @@ const Index = () => {
           <div className="text-center mt-12">
             <p className="text-blue-100 mb-4">Follow us on social media:</p>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" className="border-white hover:bg-white text-blue-700">
                 Facebook
               </Button>
               <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
@@ -281,8 +290,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
