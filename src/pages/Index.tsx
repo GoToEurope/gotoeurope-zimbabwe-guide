@@ -1,4 +1,3 @@
-
 import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -238,21 +237,21 @@ const Index = () => {
                 <MapPin className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">Address</h3>
-              <p className="text-blue-100">Harare, Zimbabwe</p>
+              <p className="text-blue-100">31 Bath Road, Harare, Zimbabwe</p>
             </div>
             <div className="space-y-4">
               <div className="mx-auto w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                 <Phone className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">WhatsApp</h3>
-              <p className="text-blue-100">+263 XXX XXX XXX</p>
+              <p className="text-blue-100">+263 719118661</p>
             </div>
             <div className="space-y-4">
               <div className="mx-auto w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                 <Mail className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">Email</h3>
-              <p className="text-blue-100">info@gotoeurope.co.zw</p>
+              <p className="text-blue-100">info@GoToEurope.co.zw</p>
             </div>
           </div>
           <div className="text-center mt-12">
