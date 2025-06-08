@@ -242,21 +242,21 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+              <div className="mx-auto w-16 h-16 bg-opacity-20 rounded-full flex items-center justify-center bg-yellow-400">
                 <MapPin className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">Address</h3>
               <p className="text-blue-100">31 Bath Road, Harare, Zimbabwe</p>
             </div>
             <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+              <div className="mx-auto w-16 h-16 bg-opacity-20 rounded-full flex items-center justify-center bg-green-600">
                 <Phone className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">WhatsApp</h3>
               <p className="text-blue-100">+263 719118661</p>
             </div>
             <div className="space-y-4">
-              <div className="mx-auto w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+              <div className="mx-auto w-16 h-16 bg-opacity-20 rounded-full flex items-center justify-center bg-red-600">
                 <Mail className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-semibold">Email</h3>
