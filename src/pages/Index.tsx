@@ -1,6 +1,8 @@
-import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin, Shield, Globe, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+
 const Index = () => {
   const services = [{
     icon: <GraduationCap className="h-8 w-8 text-primary" />,
@@ -210,6 +212,136 @@ const Index = () => {
                 </CardContent>
               </Card>)}
           </div>
+        </div>
+      </section>
+
+      {/* Permanent Residence Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Shield className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                Permanent Residence in Bulgaria – EU & Schengen Benefits
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="h-6 w-6 text-primary" />
+                  Who Can Apply for Permanent Residence?
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4">
+                  Zimbabwean students and non-EU nationals who:
+                </p>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    Have legally resided in Bulgaria for at least 5 years
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    Held long-stay or continuous residence permits (student years may count partially)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    Show stable income, health insurance, accommodation, and basic integration
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <GraduationCap className="h-5 w-5 inline mr-2" />
+                    <strong>Student years</strong> are typically counted at 50% weight, but can be complemented with post-study work or business residence to reach eligibility faster.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Star className="h-6 w-6 text-primary" />
+                  Benefits After Receiving Permanent Residence
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">1. Long-Term EU Residency Rights</h4>
+                    <p className="text-gray-700 mb-2">
+                      You receive a Bulgarian Permanent Residence Permit, which may also qualify you for:
+                    </p>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• EU Long-Term Residency under Directive 2003/109/EC</li>
+                      <li>• Legal rights to move to another EU country (with application)</li>
+                      <li>• Fewer barriers for EU-wide work permits or residence transfers</li>
+                    </ul>
+                  </div>
+
+                  <Separator />
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">2. Visa-Free Travel Across the Entire Schengen Area</h4>
+                    <p className="text-gray-700 mb-2">
+                      Since March 2024, Bulgaria is officially part of Schengen by air and sea, which means:
+                    </p>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• You can travel to any Schengen country without a visa for up to 90 days within 180 days</li>
+                      <li>• Enjoy tourism, short-term business visits, family visits, and conferences across Germany, France, Italy, Netherlands, and more</li>
+                    </ul>
+                    <div className="mt-3 p-3 bg-green-50 rounded-lg">
+                      <p className="text-sm text-green-800">
+                        <CheckCircle className="h-4 w-4 inline mr-1" />
+                        As Schengen land access integration continues, full border-free travel will become even easier.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-l-primary">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Plane className="h-6 w-6 text-primary" />
+                What This Means for Students
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    Study in Bulgaria with a long-stay visa
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    Transition to work or long-term stay
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    Apply for permanent residence after 5 years
+                  </li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    Travel anywhere in Schengen without a visa
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    Open path to future EU citizenship
+                  </li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
