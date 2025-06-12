@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+
 const Home = () => {
   const tuitionComparison = [{
     degree: "Medicine",
@@ -43,11 +44,13 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="relative text-white py-20 px-4 overflow-hidden">
-        {/* Video Background */}
-        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
-          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69fabf25f2b0c4c97a7ebb02a6c2a1326&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-cityscape-4624-large.mp4" type="video/mp4" />
-        </video>
+        {/* Image Background */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+          style={{
+            backgroundImage: 'url(/lovable-uploads/e77b8160-4a16-4c34-be2b-c2cb3522011c.png)'
+          }}
+        ></div>
         
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-blue-600/70 to-blue-800/80 z-10"></div>
@@ -304,4 +307,5 @@ const Home = () => {
       <Footer />
     </div>;
 };
+
 export default Home;
