@@ -1,10 +1,8 @@
-
 import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin, Shield, Globe, CheckCircle, DollarSign, TrendingDown, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
 const Index = () => {
   const services = [{
     icon: <GraduationCap className="h-8 w-8 text-primary" />,
@@ -85,60 +83,44 @@ const Index = () => {
     name: "Trakia University – Stara Zagora",
     url: "https://www.uni-sz.bg/"
   }];
-  const tuitionComparison = [
-    {
-      degree: "Medicine",
-      uk: "$45,000 - $65,000",
-      bulgaria: "$8,000 - $12,000",
-      savings: "Up to $53,000 per year"
-    },
-    {
-      degree: "Engineering",
-      uk: "$28,000 - $45,000",
-      bulgaria: "$4,000 - $8,000",
-      savings: "Up to $37,000 per year"
-    },
-    {
-      degree: "Business",
-      uk: "$25,000 - $40,000",
-      bulgaria: "$3,500 - $6,000",
-      savings: "Up to $34,000 per year"
-    }
-  ];
-  const livingCostComparison = [
-    {
-      category: "Accommodation",
-      uk: "$800 - $1,500/month",
-      bulgaria: "$200 - $400/month"
-    },
-    {
-      category: "Food & Groceries",
-      uk: "$300 - $500/month",
-      bulgaria: "$150 - $250/month"
-    },
-    {
-      category: "Transportation",
-      uk: "$150 - $300/month",
-      bulgaria: "$30 - $60/month"
-    },
-    {
-      category: "Total Monthly Living",
-      uk: "$1,250 - $2,300",
-      bulgaria: "$380 - $710"
-    }
-  ];
-
+  const tuitionComparison = [{
+    degree: "Medicine",
+    uk: "$45,000 - $65,000",
+    bulgaria: "$8,000 - $12,000",
+    savings: "Up to $53,000 per year"
+  }, {
+    degree: "Engineering",
+    uk: "$28,000 - $45,000",
+    bulgaria: "$4,000 - $8,000",
+    savings: "Up to $37,000 per year"
+  }, {
+    degree: "Business",
+    uk: "$25,000 - $40,000",
+    bulgaria: "$3,500 - $6,000",
+    savings: "Up to $34,000 per year"
+  }];
+  const livingCostComparison = [{
+    category: "Accommodation",
+    uk: "$800 - $1,500/month",
+    bulgaria: "$200 - $400/month"
+  }, {
+    category: "Food & Groceries",
+    uk: "$300 - $500/month",
+    bulgaria: "$150 - $250/month"
+  }, {
+    category: "Transportation",
+    uk: "$150 - $300/month",
+    bulgaria: "$30 - $60/month"
+  }, {
+    category: "Total Monthly Living",
+    uk: "$1,250 - $2,300",
+    bulgaria: "$380 - $710"
+  }];
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative text-white py-20 px-4 overflow-hidden">
         {/* Video Background */}
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
+        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
           <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69fabf25f2b0c4c97a7ebb02a6c2a1326&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
           <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-cityscape-4624-large.mp4" type="video/mp4" />
         </video>
@@ -164,7 +146,7 @@ const Index = () => {
                 Explore Universities
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3">
+              <Button variant="outline" size="lg" className="border-white text-white hover:text-blue-900 px-8 py-3 bg-lime-600 hover:bg-lime-500">
                 Book Free Consultation
               </Button>
             </div>
@@ -207,14 +189,12 @@ const Index = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {tuitionComparison.map((comparison, index) => (
-                      <TableRow key={index}>
+                    {tuitionComparison.map((comparison, index) => <TableRow key={index}>
                         <TableCell className="font-medium">{comparison.degree}</TableCell>
                         <TableCell className="text-red-600 font-semibold">{comparison.uk}</TableCell>
                         <TableCell className="text-green-600 font-semibold">{comparison.bulgaria}</TableCell>
                         <TableCell className="text-primary font-bold">{comparison.savings}</TableCell>
-                      </TableRow>
-                    ))}
+                      </TableRow>)}
                   </TableBody>
                 </Table>
               </CardContent>
@@ -243,13 +223,11 @@ const Index = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {livingCostComparison.map((cost, index) => (
-                      <TableRow key={index}>
+                    {livingCostComparison.map((cost, index) => <TableRow key={index}>
                         <TableCell className="font-medium">{cost.category}</TableCell>
                         <TableCell className="text-red-600 font-semibold">{cost.uk}</TableCell>
                         <TableCell className="text-green-600 font-semibold">{cost.bulgaria}</TableCell>
-                      </TableRow>
-                    ))}
+                      </TableRow>)}
                   </TableBody>
                 </Table>
               </CardContent>
