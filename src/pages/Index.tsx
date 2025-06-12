@@ -1,3 +1,4 @@
+
 import { ArrowRight, Users, GraduationCap, Plane, Star, Phone, Mail, MapPin, Shield, Globe, CheckCircle, DollarSign, TrendingDown, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -129,8 +130,24 @@ const Index = () => {
 
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-blue-600 to-blue-800 text-white py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section className="relative text-white py-20 px-4 overflow-hidden">
+        {/* Video Background */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69fabf25f2b0c4c97a7ebb02a6c2a1326&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-cityscape-4624-large.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-blue-600/70 to-blue-800/80 z-10"></div>
+        
+        {/* Content */}
+        <div className="container mx-auto max-w-6xl relative z-20">
           <div className="text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Welcome to <span className="text-yellow-300">GoToEurope.co.zw</span>
