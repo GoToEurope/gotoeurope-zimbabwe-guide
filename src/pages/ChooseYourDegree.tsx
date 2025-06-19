@@ -1,3 +1,4 @@
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -154,9 +155,10 @@ const ChooseYourDegree = () => {
       
       {/* Hero Section with Background */}
       <section 
-        className="relative py-32 px-4 bg-cover bg-center bg-no-repeat"
+        className="relative py-32 px-4 bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop')`
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop')`,
+          backgroundPosition: 'center 30%'
         }}
       >
         <div className="container mx-auto max-w-7xl text-center">
