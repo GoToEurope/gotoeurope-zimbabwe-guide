@@ -1,4 +1,3 @@
-
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -153,19 +152,30 @@ const ChooseYourDegree = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <section className="py-20 px-4">
+      {/* Hero Section with Background */}
+      <section 
+        className="relative py-32 px-4 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop')`
+        }}
+      >
+        <div className="container mx-auto max-w-7xl text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 flex items-center justify-center gap-3">
+            <GraduationCap className="h-12 w-12 text-yellow-400" />
+            YES, YOU!
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-semibold text-yellow-400 mb-4">
+            Choose Your Degree
+          </h2>
+          <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+            Your future starts here. Explore comprehensive study options in Bulgaria across Bachelor's, Master's, and Doctorate levels 
+            at top Bulgarian universities. The opportunity is calling you!
+          </p>
+        </div>
+      </section>
+      
+      <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-              <GraduationCap className="h-10 w-10 text-primary" />
-              Choose Your Degree
-            </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Explore comprehensive study options in Bulgaria across Bachelor's, Master's, and Doctorate levels 
-              at top Bulgarian universities
-            </p>
-          </div>
-          
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {degreePrograms.map((program, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-300 border-l-4 border-l-primary">
