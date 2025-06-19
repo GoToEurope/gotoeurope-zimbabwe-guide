@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -31,20 +32,39 @@ const Universities = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <section className="py-20 px-4">
+      {/* Hero Section with Background */}
+      <section 
+        className="relative py-32 px-4 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2000&auto=format&fit=crop')`
+        }}
+      >
+        <div className="container mx-auto max-w-6xl text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Top Universities in Bulgaria
+          </h1>
+          <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+            GoToEurope.co.zw proudly partners with Bulgaria's top 20 universities. 
+            Discover world-class education opportunities that will shape your future.
+          </p>
+        </div>
+      </section>
+      
+      {/* Universities Grid Section */}
+      <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Top Universities in Bulgaria
-            </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              GoToEurope.co.zw proudly partners with Bulgaria's top 20 universities. Click on each university below to learn more about their programs, admission process, tuition fees, and student life.
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Partner Universities
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Click on each university below to learn more about their programs, admission process, tuition fees, and student life.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {universities.map((university, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white">
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-gray-900 mb-3">{university.name}</h3>
                   <a 
