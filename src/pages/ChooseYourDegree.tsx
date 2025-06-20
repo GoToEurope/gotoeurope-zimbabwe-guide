@@ -8,64 +8,19 @@ import { GraduationCap, Stethoscope, Wrench, Computer, Briefcase, Scale, PlaneTa
 const ChooseYourDegree = () => {
   const degreePrograms = [
     {
-      icon: <Stethoscope className="h-6 w-6" />,
-      field: "Medicine",
-      emoji: "🩺",
-      bachelor: "MD (Medical Doctor equivalent)",
-      master: "Specializations (e.g., Surgery, Cardiology)",
-      doctorate: "PhD in Medical Sciences",
-      tuition: "$7,500 – $8,500 / year",
+      icon: <Briefcase className="h-6 w-6" />,
+      field: "Business / Management",
+      emoji: "💼",
+      bachelor: "BA / BSc in Business Administration",
+      master: "MBA / MSc in Business",
+      doctorate: "PhD in Business / Management",
+      tuition: "$2,500 – $4,000 / year",
       universities: [
-        "Medical University – Sofia",
-        "Medical University – Varna", 
-        "Medical University – Pleven",
-        "Trakia University"
-      ]
-    },
-    {
-      icon: <Stethoscope className="h-6 w-6" />,
-      field: "Dentistry",
-      emoji: "🦷",
-      bachelor: "DDS (Doctor of Dental Surgery)",
-      master: "Dental Specializations (e.g., Orthodontics)",
-      doctorate: "PhD in Dental Sciences",
-      tuition: "$8,000 – $9,000 / year",
-      universities: ["Medical University – Varna"]
-    },
-    {
-      icon: <Stethoscope className="h-6 w-6" />,
-      field: "Pharmacy",
-      emoji: "💊",
-      bachelor: "BPharm",
-      master: "MSc in Pharmacy / Pharmacology",
-      doctorate: "PhD in Pharmaceutical Sciences",
-      tuition: "$6,000 – $7,000 / year",
-      universities: ["Medical University – Varna"]
-    },
-    {
-      icon: <Stethoscope className="h-6 w-6" />,
-      field: "Nursing",
-      emoji: "🧑‍⚕️",
-      bachelor: "BSc in Nursing",
-      master: "Clinical Specializations",
-      doctorate: "PhD in Nursing",
-      tuition: "$3,000 – $4,500 / year",
-      universities: ["Medical University – Pleven"]
-    },
-    {
-      icon: <Wrench className="h-6 w-6" />,
-      field: "Engineering",
-      emoji: "🏗️",
-      bachelor: "BEng (Civil, Mechanical, Electrical, etc.)",
-      master: "MEng / MSc in Engineering",
-      doctorate: "PhD in Engineering",
-      tuition: "$3,000 – $4,500 / year",
-      universities: [
-        "Technical University – Sofia",
-        "Technical University – Varna",
-        "University of Ruse",
-        "Trakia University",
-        "European Polytechnical University"
+        "New Bulgarian University",
+        "American University in Bulgaria",
+        "University of National and World Economy",
+        "University of Economics – Varna",
+        "Varna Free University"
       ]
     },
     {
@@ -84,20 +39,14 @@ const ChooseYourDegree = () => {
       ]
     },
     {
-      icon: <Briefcase className="h-6 w-6" />,
-      field: "Business / Management",
-      emoji: "💼",
-      bachelor: "BA / BSc in Business Administration",
-      master: "MBA / MSc in Business",
-      doctorate: "PhD in Business / Management",
-      tuition: "$2,500 – $4,000 / year",
-      universities: [
-        "New Bulgarian University",
-        "American University in Bulgaria",
-        "University of National and World Economy",
-        "University of Economics – Varna",
-        "Varna Free University"
-      ]
+      icon: <Stethoscope className="h-6 w-6" />,
+      field: "Dentistry",
+      emoji: "🦷",
+      bachelor: "DDS (Doctor of Dental Surgery)",
+      master: "Dental Specializations (e.g., Orthodontics)",
+      doctorate: "PhD in Dental Sciences",
+      tuition: "$8,000 – $9,000 / year",
+      universities: ["Medical University – Varna"]
     },
     {
       icon: <Briefcase className="h-6 w-6" />,
@@ -110,6 +59,36 @@ const ChooseYourDegree = () => {
       universities: [
         "University of National and World Economy",
         "University of Economics – Varna"
+      ]
+    },
+    {
+      icon: <BookOpen className="h-6 w-6" />,
+      field: "Education",
+      emoji: "📚",
+      bachelor: "BEd / BA in Education",
+      master: "MA in Curriculum Design / Psychology",
+      doctorate: "PhD in Education",
+      tuition: "$2,000 – $3,000 / year",
+      universities: [
+        "Veliko Tarnovo University",
+        "South-West University \"Neofit Rilski\"",
+        "Preslavsky University"
+      ]
+    },
+    {
+      icon: <Wrench className="h-6 w-6" />,
+      field: "Engineering",
+      emoji: "🏗️",
+      bachelor: "BEng (Civil, Mechanical, Electrical, etc.)",
+      master: "MEng / MSc in Engineering",
+      doctorate: "PhD in Engineering",
+      tuition: "$3,000 – $4,500 / year",
+      universities: [
+        "Technical University – Sofia",
+        "Technical University – Varna",
+        "University of Ruse",
+        "Trakia University",
+        "European Polytechnical University"
       ]
     },
     {
@@ -136,6 +115,41 @@ const ChooseYourDegree = () => {
       universities: ["Varna Free University"]
     },
     {
+      icon: <Stethoscope className="h-6 w-6" />,
+      field: "Medicine",
+      emoji: "🩺",
+      bachelor: "MD (Medical Doctor equivalent)",
+      master: "Specializations (e.g., Surgery, Cardiology)",
+      doctorate: "PhD in Medical Sciences",
+      tuition: "$7,500 – $8,500 / year",
+      universities: [
+        "Medical University – Sofia",
+        "Medical University – Varna", 
+        "Medical University – Pleven",
+        "Trakia University"
+      ]
+    },
+    {
+      icon: <Stethoscope className="h-6 w-6" />,
+      field: "Nursing",
+      emoji: "🧑‍⚕️",
+      bachelor: "BSc in Nursing",
+      master: "Clinical Specializations",
+      doctorate: "PhD in Nursing",
+      tuition: "$3,000 – $4,500 / year",
+      universities: ["Medical University – Pleven"]
+    },
+    {
+      icon: <Stethoscope className="h-6 w-6" />,
+      field: "Pharmacy",
+      emoji: "💊",
+      bachelor: "BPharm",
+      master: "MSc in Pharmacy / Pharmacology",
+      doctorate: "PhD in Pharmaceutical Sciences",
+      tuition: "$6,000 – $7,000 / year",
+      universities: ["Medical University – Varna"]
+    },
+    {
       icon: <PlaneTakeoff className="h-6 w-6" />,
       field: "Tourism",
       emoji: "🧳",
@@ -144,20 +158,6 @@ const ChooseYourDegree = () => {
       doctorate: "PhD in Tourism Development",
       tuition: "$2,000 – $3,500 / year",
       universities: ["Varna Free University"]
-    },
-    {
-      icon: <BookOpen className="h-6 w-6" />,
-      field: "Education",
-      emoji: "📚",
-      bachelor: "BEd / BA in Education",
-      master: "MA in Curriculum Design / Psychology",
-      doctorate: "PhD in Education",
-      tuition: "$2,000 – $3,000 / year",
-      universities: [
-        "Veliko Tarnovo University",
-        "South-West University \"Neofit Rilski\"",
-        "Preslavsky University"
-      ]
     }
   ];
 
