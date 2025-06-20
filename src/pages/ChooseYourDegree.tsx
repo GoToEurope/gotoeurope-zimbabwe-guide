@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Stethoscope, Wrench, Computer, Briefcase, Scale, PlaneTakeoff, BookOpen } from "lucide-react";
+import { GraduationCap, Stethoscope, Wrench, Computer, Briefcase, Scale, PlaneTakeoff, BookOpen, DollarSign } from "lucide-react";
 
 const ChooseYourDegree = () => {
   const degreePrograms = [
@@ -12,8 +12,9 @@ const ChooseYourDegree = () => {
       field: "Medicine",
       emoji: "🩺",
       bachelor: "MD (Medical Doctor equivalent)",
-      master: "Clinical Specializations",
+      master: "Specializations (e.g., Surgery, Cardiology)",
       doctorate: "PhD in Medical Sciences",
+      tuition: "$7,500 – $8,500 / year",
       universities: [
         "Medical University – Sofia",
         "Medical University – Varna", 
@@ -25,9 +26,10 @@ const ChooseYourDegree = () => {
       icon: <Stethoscope className="h-6 w-6" />,
       field: "Dentistry",
       emoji: "🦷",
-      bachelor: "DDS (Dental Surgery)",
-      master: "Orthodontics, Prosthodontics",
-      doctorate: "Dental Sciences",
+      bachelor: "DDS (Doctor of Dental Surgery)",
+      master: "Dental Specializations (e.g., Orthodontics)",
+      doctorate: "PhD in Dental Sciences",
+      tuition: "$8,000 – $9,000 / year",
       universities: ["Medical University – Varna"]
     },
     {
@@ -35,8 +37,9 @@ const ChooseYourDegree = () => {
       field: "Pharmacy",
       emoji: "💊",
       bachelor: "BPharm",
-      master: "Clinical Pharmacy, Pharmacology",
-      doctorate: "Pharmaceutical Sciences",
+      master: "MSc in Pharmacy / Pharmacology",
+      doctorate: "PhD in Pharmaceutical Sciences",
+      tuition: "$6,000 – $7,000 / year",
       universities: ["Medical University – Varna"]
     },
     {
@@ -44,17 +47,19 @@ const ChooseYourDegree = () => {
       field: "Nursing",
       emoji: "🧑‍⚕️",
       bachelor: "BSc in Nursing",
-      master: "Advanced Clinical Practice",
-      doctorate: "PhD in Health Sciences",
+      master: "Clinical Specializations",
+      doctorate: "PhD in Nursing",
+      tuition: "$3,000 – $4,500 / year",
       universities: ["Medical University – Pleven"]
     },
     {
       icon: <Wrench className="h-6 w-6" />,
       field: "Engineering",
       emoji: "🏗️",
-      bachelor: "BEng (Mechanical, Electrical, Civil, etc.)",
-      master: "MEng, Renewable Energies, Civil Planning",
+      bachelor: "BEng (Civil, Mechanical, Electrical, etc.)",
+      master: "MEng / MSc in Engineering",
       doctorate: "PhD in Engineering",
+      tuition: "$3,000 – $4,500 / year",
       universities: [
         "Technical University – Sofia",
         "Technical University – Varna",
@@ -67,9 +72,10 @@ const ChooseYourDegree = () => {
       icon: <Computer className="h-6 w-6" />,
       field: "Computer Science / IT",
       emoji: "💻",
-      bachelor: "BSc in Computer Science, Informatics",
-      master: "Software Engineering, Cybersecurity",
-      doctorate: "Computer Science",
+      bachelor: "BSc in Computer Science",
+      master: "MSc in Software Engineering / Cybersecurity",
+      doctorate: "PhD in Computer Science",
+      tuition: "$3,000 – $4,500 / year",
       universities: [
         "New Bulgarian University",
         "University of Economics – Varna",
@@ -81,9 +87,10 @@ const ChooseYourDegree = () => {
       icon: <Briefcase className="h-6 w-6" />,
       field: "Business / Management",
       emoji: "💼",
-      bachelor: "BBA or BSc in Business Admin",
-      master: "MBA, MSc in Marketing, Strategy",
-      doctorate: "Business Administration",
+      bachelor: "BA / BSc in Business Administration",
+      master: "MBA / MSc in Business",
+      doctorate: "PhD in Business / Management",
+      tuition: "$2,500 – $4,000 / year",
       universities: [
         "New Bulgarian University",
         "American University in Bulgaria",
@@ -97,8 +104,9 @@ const ChooseYourDegree = () => {
       field: "Economics",
       emoji: "📊",
       bachelor: "BSc in Economics",
-      master: "Economic Policy, Finance",
-      doctorate: "Economics",
+      master: "MSc in Economic Policy",
+      doctorate: "PhD in Economics",
+      tuition: "$2,500 – $4,000 / year",
       universities: [
         "University of National and World Economy",
         "University of Economics – Varna"
@@ -108,9 +116,10 @@ const ChooseYourDegree = () => {
       icon: <Briefcase className="h-6 w-6" />,
       field: "Finance",
       emoji: "💰",
-      bachelor: "Finance & Accounting",
-      master: "Investment, Banking",
-      doctorate: "Financial Economics",
+      bachelor: "BSc in Finance / Accounting",
+      master: "MSc in Banking & Investment",
+      doctorate: "PhD in Finance",
+      tuition: "$2,500 – $4,000 / year",
       universities: [
         "University of National and World Economy",
         "University of Economics – Varna"
@@ -120,31 +129,34 @@ const ChooseYourDegree = () => {
       icon: <Scale className="h-6 w-6" />,
       field: "Law",
       emoji: "⚖️",
-      bachelor: "LLB",
-      master: "LLM (EU, Corporate Law)",
+      bachelor: "LLB (Law)",
+      master: "LLM (International / Corporate Law)",
       doctorate: "PhD in Legal Studies",
+      tuition: "$2,500 – $4,000 / year",
       universities: ["Varna Free University"]
     },
     {
       icon: <PlaneTakeoff className="h-6 w-6" />,
       field: "Tourism",
       emoji: "🧳",
-      bachelor: "Tourism & Hospitality Management",
-      master: "Sustainable Tourism, Event Management",
-      doctorate: "Tourism Development",
+      bachelor: "BA in Hospitality & Tourism",
+      master: "MSc in International Tourism",
+      doctorate: "PhD in Tourism Development",
+      tuition: "$2,000 – $3,500 / year",
       universities: ["Varna Free University"]
     },
     {
       icon: <BookOpen className="h-6 w-6" />,
       field: "Education",
       emoji: "📚",
-      bachelor: "BEd, Pedagogy",
-      master: "Educational Leadership",
-      doctorate: "Instructional Design, Curriculum Studies",
+      bachelor: "BEd / BA in Education",
+      master: "MA in Curriculum Design / Psychology",
+      doctorate: "PhD in Education",
+      tuition: "$2,000 – $3,000 / year",
       universities: [
         "Veliko Tarnovo University",
         "South-West University \"Neofit Rilski\"",
-        "Konstantin Preslavsky University of Shumen"
+        "Preslavsky University"
       ]
     }
   ];
@@ -158,7 +170,7 @@ const ChooseYourDegree = () => {
         className="relative py-32 px-4 bg-cover bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop')`,
-          backgroundPosition: 'center 30%'
+          backgroundPosition: 'center 40%'
         }}
       >
         <div className="container mx-auto max-w-7xl text-center">
@@ -167,11 +179,11 @@ const ChooseYourDegree = () => {
             YES, YOU!
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-yellow-400 mb-4">
-            Choose Your Degree
+            Most Desired Study Programs in Bulgaria
           </h2>
           <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
-            Your future starts here. Explore comprehensive study options in Bulgaria across Bachelor's, Master's, and Doctorate levels 
-            at top Bulgarian universities. The opportunity is calling you!
+            Complete guide with Universities, Degree Levels & Tuition Fees in USD. 
+            Your future starts here with affordable, world-class education!
           </p>
         </div>
       </section>
@@ -188,8 +200,18 @@ const ChooseYourDegree = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  {/* Tuition Fee Highlight */}
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <DollarSign className="h-5 w-5 text-green-600" />
+                      <span className="font-semibold text-green-800">Tuition Fee</span>
+                    </div>
+                    <p className="text-lg font-bold text-green-700">{program.tuition}</p>
+                  </div>
+
                   {/* Degree Levels */}
                   <div className="space-y-4">
+                    <h4 className="font-semibold text-gray-900 mb-3">Degrees Offered:</h4>
                     <div>
                       <Badge variant="secondary" className="mb-2">Bachelor's</Badge>
                       <p className="text-sm text-gray-700">{program.bachelor}</p>
@@ -208,7 +230,7 @@ const ChooseYourDegree = () => {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                       <GraduationCap className="h-4 w-4" />
-                      Universities
+                      {program.universities.length > 1 ? 'Universities' : 'University'}
                     </h4>
                     <ul className="space-y-2">
                       {program.universities.map((university, uniIndex) => (
