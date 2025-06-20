@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -71,11 +70,10 @@ const formSchema = z.object({
   })).optional(),
   
   // English Language Proficiency
-  hasEnglishCertificate: z.boolean(),
+  hasEnglishCertificate: z.enum(["yes", "no"], { required_error: "Please select yes or no." }),
   englishCertificateType: z.enum(["ielts", "toefl", "other"]).optional(),
   otherCertificateType: z.string().optional(),
   englishScore: z.string().optional(),
-  studiedInEnglish: z.boolean(),
   
   // Travel History
   traveledAbroad: z.boolean(),
@@ -129,8 +127,7 @@ const ApplyNow = () => {
       preferredUniversity: "",
       intakePeriod: "september",
       otherIntakePeriod: "",
-      hasEnglishCertificate: false,
-      studiedInEnglish: false,
+      hasEnglishCertificate: "no",
       traveledAbroad: false,
       countriesVisited: "",
       visaRejections: "",
@@ -634,23 +631,30 @@ const ApplyNow = () => {
                 control={form.control}
                 name="hasEnglishCertificate"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormItem>
+                    <FormLabel>Do you have an English Certificate? *</FormLabel>
                     <FormControl>
-                      <Checkbox 
-                        checked={field.value} 
-                        onCheckedChange={field.onChange}
-                      />
+                      <RadioGroup 
+                        onValueChange={field.onChange} 
+                        defaultValue={field.value}
+                        className="flex space-x-4"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="yes" id="english-cert-yes" />
+                          <label htmlFor="english-cert-yes">Yes</label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="no" id="english-cert-no" />
+                          <label htmlFor="english-cert-no">No</label>
+                        </div>
+                      </RadioGroup>
                     </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Do you have an English Certificate?
-                      </FormLabel>
-                    </div>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
               
-              {form.watch("hasEnglishCertificate") && (
+              {form.watch("hasEnglishCertificate") === "yes" && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-7">
                   <FormField
                     control={form.control}
@@ -706,26 +710,6 @@ const ApplyNow = () => {
                   />
                 </div>
               )}
-              
-              <FormField
-                control={form.control}
-                name="studiedInEnglish"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl>
-                      <Checkbox 
-                        checked={field.value} 
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Have you studied in English before?
-                      </FormLabel>
-                    </div>
-                  </FormItem>
-                )}
-              />
             </div>
             
             {/* Travel History Section */}
@@ -877,11 +861,11 @@ const ApplyNow = () => {
                       >
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="dormitory" id="accommodation-dormitory" />
-                          <label htmlFor="accommodation-dormitory">University Dormitory (€80-150/month)</label>
+                          <label htmlFor="accommodation-dormitory">University Dormitory ($200/month)</label>
                         </div>
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="apartment" id="accommodation-apartment" />
-                          <label htmlFor="accommodation-apartment">Private Apartment (€200-350/month)</label>
+                          <label htmlFor="accommodation-apartment">Private Apartment ($350-500/month)</label>
                         </div>
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="self" id="accommodation-self" />
