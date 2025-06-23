@@ -11,69 +11,90 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, DollarSign, GraduationCap } from "lucide-react";
 
-// University and program data
-const universityData = {
-  "medical-sofia": {
-    name: "Medical University – Sofia",
-    programs: {
-      "medicine-md": { name: "Medicine (MD)", fee: 9900 },
-      "dentistry-dds": { name: "Dentistry (DDS)", fee: 9900 },
-      "pharmacy-bpharm": { name: "Pharmacy (BPharm)", fee: 6600 }
-    }
+// Universities and Programs data structure
+const universitiesData = [
+  {
+    id: "medical-sofia",
+    university: "Medical University – Sofia",
+    city: "Sofia",
+    programs: [
+      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 },
+      { id: "medicine-master", degree: "Master", field: "Medicine", tuition: 9900 },
+      { id: "medicine-phd", degree: "PhD", field: "Medical Sciences", tuition: 9900 },
+      { id: "dentistry-bachelor", degree: "Bachelor", field: "Dentistry", tuition: 9900 },
+      { id: "pharmacy-bachelor", degree: "Bachelor", field: "Pharmacy", tuition: 6600 }
+    ]
   },
-  "technical-sofia": {
-    name: "Technical University – Sofia",
-    programs: {
-      "bachelor-engineering": { name: "Bachelor in Engineering", fee: 3300 },
-      "master-engineering": { name: "Master in Engineering", fee: 4400 },
-      "phd-engineering": { name: "PhD in Engineering", fee: 4950 }
-    }
+  {
+    id: "medical-varna",
+    university: "Medical University – Varna",
+    city: "Varna",
+    programs: [
+      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 }
+    ]
   },
-  "nbu": {
-    name: "New Bulgarian University (NBU)",
-    programs: {
-      "bachelor-various": { name: "Bachelor (Various Disciplines)", fee: 3300 },
-      "master-various": { name: "Master", fee: 3850 },
-      "phd-various": { name: "PhD", fee: 4400 }
-    }
+  {
+    id: "medical-pleven",
+    university: "Medical University – Pleven",
+    city: "Other",
+    programs: [
+      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 }
+    ]
   },
-  "medical-varna": {
-    name: "Medical University – Varna",
-    programs: {
-      "medicine-md": { name: "Medicine (MD)", fee: 9900 }
-    }
+  {
+    id: "technical-sofia",
+    university: "Technical University – Sofia",
+    city: "Sofia",
+    programs: [
+      { id: "engineering-bachelor", degree: "Bachelor", field: "Engineering", tuition: 3300 },
+      { id: "engineering-master", degree: "Master", field: "Engineering", tuition: 4400 },
+      { id: "engineering-phd", degree: "PhD", field: "Engineering", tuition: 4950 }
+    ]
   },
-  "medical-pleven": {
-    name: "Medical University – Pleven",
-    programs: {
-      "medicine-md": { name: "Medicine (MD)", fee: 9900 }
-    }
+  {
+    id: "nbu",
+    university: "New Bulgarian University",
+    city: "Sofia",
+    programs: [
+      { id: "business-bachelor", degree: "Bachelor", field: "Business / IT / Law", tuition: 3300 },
+      { id: "business-master", degree: "Master", field: "Business / IT / Law", tuition: 3850 },
+      { id: "business-phd", degree: "PhD", field: "Business / IT / Law", tuition: 4400 }
+    ]
   },
-  "european-poly": {
-    name: "European Polytechnical University (Pernik)",
-    programs: {
-      "engineering-it": { name: "Engineering / IT Programs", fee: 1650 }
-    }
+  {
+    id: "european-poly",
+    university: "European Polytechnical University",
+    city: "Other",
+    programs: [
+      { id: "engineering-bachelor", degree: "Bachelor", field: "Engineering / IT", tuition: 1650 },
+      { id: "engineering-master", degree: "Master", field: "Engineering / IT", tuition: 1650 }
+    ]
   }
-} as const;
+];
 
-// Living cost estimates (monthly in USD)
-const livingCosts = {
-  accommodation: {
-    dormitory: 200,
-    apartment: 425 // average of 350-500
+// Cost of Living by Area (monthly in USD)
+const livingCostsByCity = {
+  Sofia: {
+    university_accommodation: 200,
+    private_accommodation: { min: 350, max: 500 },
+    food_and_misc: 400
   },
-  food: 300,
-  transportation: 30,
-  utilities: 80,
-  personalExpenses: 150,
-  booksSupplies: 50
+  Varna: {
+    university_accommodation: 200,
+    private_accommodation: { min: 300, max: 450 },
+    food_and_misc: 375
+  },
+  Other: {
+    university_accommodation: 200,
+    private_accommodation: { min: 280, max: 400 },
+    food_and_misc: 350
+  }
 };
 
 const formSchema = z.object({
   university: z.string().min(1, "Please select a university"),
   program: z.string().min(1, "Please select a program"),
-  accommodation: z.enum(["dormitory", "apartment"], { required_error: "Please select accommodation type" })
+  accommodation: z.enum(["university", "private"], { required_error: "Please select accommodation type" })
 });
 
 const CostCalculator = () => {
@@ -82,6 +103,9 @@ const CostCalculator = () => {
     livingMonth: number;
     livingYear: number;
     totalYear: number;
+    city: string;
+    universityName: string;
+    programName: string;
   } | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -89,7 +113,7 @@ const CostCalculator = () => {
     defaultValues: {
       university: "",
       program: "",
-      accommodation: "dormitory"
+      accommodation: "university"
     }
   });
 
@@ -97,22 +121,34 @@ const CostCalculator = () => {
   const selectedProgram = form.watch("program");
   const selectedAccommodation = form.watch("accommodation");
 
+  const getSelectedUniversityData = () => {
+    return universitiesData.find(uni => uni.id === selectedUniversity);
+  };
+
+  const getSelectedProgramData = () => {
+    const university = getSelectedUniversityData();
+    if (!university) return null;
+    return university.programs.find(program => program.id === selectedProgram);
+  };
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const university = universityData[values.university as keyof typeof universityData];
-    const program = university.programs[values.program as keyof typeof university.programs];
+    const university = universitiesData.find(uni => uni.id === values.university);
+    const program = university?.programs.find(prog => prog.id === values.program);
     
-    if (!program) {
-      console.error("Program not found");
+    if (!university || !program) {
+      console.error("University or program not found");
       return;
     }
     
-    const tuitionYear = program.fee;
-    const accommodationCost = livingCosts.accommodation[values.accommodation];
-    const otherMonthlyCosts = livingCosts.food + livingCosts.transportation + 
-                            livingCosts.utilities + livingCosts.personalExpenses + 
-                            livingCosts.booksSupplies;
+    const city = university.city as keyof typeof livingCostsByCity;
+    const cityData = livingCostsByCity[city];
     
-    const livingMonth = accommodationCost + otherMonthlyCosts;
+    const tuitionYear = program.tuition;
+    const accommodationCost = values.accommodation === "university" 
+      ? cityData.university_accommodation
+      : (cityData.private_accommodation.min + cityData.private_accommodation.max) / 2;
+    
+    const livingMonth = accommodationCost + cityData.food_and_misc;
     const livingYear = livingMonth * 12;
     const totalYear = tuitionYear + livingYear;
 
@@ -120,7 +156,10 @@ const CostCalculator = () => {
       tuitionYear,
       livingMonth,
       livingYear,
-      totalYear
+      totalYear,
+      city: university.city,
+      universityName: university.university,
+      programName: `${program.degree} in ${program.field}`
     });
   };
 
@@ -174,9 +213,9 @@ const CostCalculator = () => {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {Object.entries(universityData).map(([key, university]) => (
-                                <SelectItem key={key} value={key}>
-                                  {university.name}
+                              {universitiesData.map((university) => (
+                                <SelectItem key={university.id} value={university.id}>
+                                  {university.university}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -200,9 +239,9 @@ const CostCalculator = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {Object.entries(universityData[selectedUniversity as keyof typeof universityData].programs).map(([key, program]) => (
-                                  <SelectItem key={key} value={key}>
-                                    {program.name} - ${program.fee.toLocaleString()}/year
+                                {getSelectedUniversityData()?.programs.map((program) => (
+                                  <SelectItem key={program.id} value={program.id}>
+                                    {program.degree} in {program.field} - ${program.tuition.toLocaleString()}/year
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -226,8 +265,8 @@ const CostCalculator = () => {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="dormitory">University Dormitory ($200/month)</SelectItem>
-                              <SelectItem value="apartment">Private Apartment ($350-500/month avg)</SelectItem>
+                              <SelectItem value="university">University Dormitory ($200/month)</SelectItem>
+                              <SelectItem value="private">Private Apartment ($350-500/month avg)</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -254,21 +293,28 @@ const CostCalculator = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h3 className="font-semibold text-blue-800 mb-2">Selected Program</h3>
+                    <p className="text-blue-700">{calculations.universityName}</p>
+                    <p className="text-blue-600">{calculations.programName}</p>
+                    <p className="text-sm text-blue-600">Location: {calculations.city}</p>
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-blue-800 mb-2">Tuition Fee</h3>
-                      <p className="text-2xl font-bold text-blue-600">
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-green-800 mb-2">Tuition Fee</h3>
+                      <p className="text-2xl font-bold text-green-600">
                         ${calculations.tuitionYear.toLocaleString()}
                       </p>
-                      <p className="text-sm text-blue-600">per year</p>
+                      <p className="text-sm text-green-600">per year</p>
                     </div>
                     
-                    <div className="bg-green-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-green-800 mb-2">Living Costs</h3>
-                      <p className="text-2xl font-bold text-green-600">
+                    <div className="bg-orange-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-orange-800 mb-2">Living Costs</h3>
+                      <p className="text-2xl font-bold text-orange-600">
                         ${calculations.livingMonth.toLocaleString()}
                       </p>
-                      <p className="text-sm text-green-600">per month</p>
+                      <p className="text-sm text-orange-600">per month</p>
                     </div>
                   </div>
 
@@ -296,27 +342,16 @@ const CostCalculator = () => {
                     <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
                         <span>Accommodation:</span>
-                        <span>${livingCosts.accommodation[selectedAccommodation as keyof typeof livingCosts.accommodation]}</span>
+                        <span>${
+                          selectedAccommodation === "university" 
+                            ? livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].university_accommodation
+                            : Math.round((livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].private_accommodation.min + 
+                                        livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].private_accommodation.max) / 2)
+                        }</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Food:</span>
-                        <span>${livingCosts.food}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Transportation:</span>
-                        <span>${livingCosts.transportation}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Utilities:</span>
-                        <span>${livingCosts.utilities}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Personal Expenses:</span>
-                        <span>${livingCosts.personalExpenses}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Books & Supplies:</span>
-                        <span>${livingCosts.booksSupplies}</span>
+                        <span>Food & Miscellaneous:</span>
+                        <span>${livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].food_and_misc}</span>
                       </div>
                     </div>
                   </div>
