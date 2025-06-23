@@ -55,7 +55,7 @@ const universityData = {
       "engineering-it": { name: "Engineering / IT Programs", fee: 1650 }
     }
   }
-};
+} as const;
 
 // Living cost estimates (monthly in USD)
 const livingCosts = {
@@ -100,6 +100,11 @@ const CostCalculator = () => {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const university = universityData[values.university as keyof typeof universityData];
     const program = university.programs[values.program as keyof typeof university.programs];
+    
+    if (!program) {
+      console.error("Program not found");
+      return;
+    }
     
     const tuitionYear = program.fee;
     const accommodationCost = livingCosts.accommodation[values.accommodation];
