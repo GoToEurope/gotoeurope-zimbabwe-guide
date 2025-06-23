@@ -11,6 +11,7 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import ApplyNow from "./pages/ApplyNow";
 import ChooseYourDegree from "./pages/ChooseYourDegree";
+import CostCalculator from "./pages/CostCalculator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/apply" element={<ApplyNow />} />
           <Route path="/degrees" element={<ChooseYourDegree />} />
+          <Route path="/calculator" element={<CostCalculator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
