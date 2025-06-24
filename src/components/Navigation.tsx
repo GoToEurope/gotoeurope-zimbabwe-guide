@@ -26,6 +26,7 @@ const Navigation = () => {
             <Link to="/universities" className="text-gray-700 hover:text-primary font-medium">Universities</Link>
             <Link to="/degrees" className="text-gray-700 hover:text-primary font-medium">Degrees</Link>
             <Link to="/services" className="text-gray-700 hover:text-primary font-medium">Services</Link>
+            <Link to="/calculator" className="text-gray-700 hover:text-primary font-medium">Calculator</Link>
             <Link to="/pricing" className="text-gray-700 hover:text-primary font-medium">Pricing</Link>
             <Link to="/contact" className="text-gray-700 hover:text-primary font-medium">Contact</Link>
             <Link to="/apply">
@@ -80,6 +81,13 @@ const Navigation = () => {
                     className="text-lg text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-100"
                   >
                     Services
+                  </Link>
+                  <Link 
+                    to="/calculator" 
+                    onClick={handleLinkClick}
+                    className="text-lg text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-100"
+                  >
+                    Calculator
                   </Link>
                   <Link 
                     to="/pricing" 
