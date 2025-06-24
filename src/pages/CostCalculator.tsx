@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,63 +10,190 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, DollarSign, GraduationCap } from "lucide-react";
 
-// Universities and Programs data structure
+// Universities and Programs data structure with comprehensive tuition fees
 const universitiesData = [
   {
-    id: "medical-sofia",
-    university: "Medical University – Sofia",
-    city: "Sofia",
-    programs: [
-      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 },
-      { id: "medicine-master", degree: "Master", field: "Medicine", tuition: 9900 },
-      { id: "medicine-phd", degree: "PhD", field: "Medical Sciences", tuition: 9900 },
-      { id: "dentistry-bachelor", degree: "Bachelor", field: "Dentistry", tuition: 9900 },
-      { id: "pharmacy-bachelor", degree: "Bachelor", field: "Pharmacy", tuition: 6600 }
+    "university": "Medical University – Sofia",
+    "city": "Sofia",
+    "programs": [
+      { "degree": "Bachelor", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Master", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "PhD", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 }
     ]
   },
   {
-    id: "medical-varna",
-    university: "Medical University – Varna",
-    city: "Varna",
-    programs: [
-      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 }
+    "university": "Medical University – Varna",
+    "city": "Varna",
+    "programs": [
+      { "degree": "Bachelor", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Master", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "PhD", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Bachelor", "field": "Dentistry", "tuition_min": 8000, "tuition_max": 9000 },
+      { "degree": "Master", "field": "Dentistry", "tuition_min": 8000, "tuition_max": 9000 },
+      { "degree": "PhD", "field": "Dentistry", "tuition_min": 8000, "tuition_max": 9000 },
+      { "degree": "Bachelor", "field": "Pharmacy", "tuition_min": 6000, "tuition_max": 7000 },
+      { "degree": "Master", "field": "Pharmacy", "tuition_min": 6000, "tuition_max": 7000 },
+      { "degree": "PhD", "field": "Pharmacy", "tuition_min": 6000, "tuition_max": 7000 }
     ]
   },
   {
-    id: "medical-pleven",
-    university: "Medical University – Pleven",
-    city: "Other",
-    programs: [
-      { id: "medicine-bachelor", degree: "Bachelor", field: "Medicine", tuition: 9900 }
+    "university": "Medical University – Pleven",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Master", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "PhD", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Bachelor", "field": "Nursing", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Nursing", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Nursing", "tuition_min": 3000, "tuition_max": 4500 }
     ]
   },
   {
-    id: "technical-sofia",
-    university: "Technical University – Sofia",
-    city: "Sofia",
-    programs: [
-      { id: "engineering-bachelor", degree: "Bachelor", field: "Engineering", tuition: 3300 },
-      { id: "engineering-master", degree: "Master", field: "Engineering", tuition: 4400 },
-      { id: "engineering-phd", degree: "PhD", field: "Engineering", tuition: 4950 }
+    "university": "Technical University – Sofia",
+    "city": "Sofia",
+    "programs": [
+      { "degree": "Bachelor", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 }
     ]
   },
   {
-    id: "nbu",
-    university: "New Bulgarian University",
-    city: "Sofia",
-    programs: [
-      { id: "business-bachelor", degree: "Bachelor", field: "Business / IT / Law", tuition: 3300 },
-      { id: "business-master", degree: "Master", field: "Business / IT / Law", tuition: 3850 },
-      { id: "business-phd", degree: "PhD", field: "Business / IT / Law", tuition: 4400 }
+    "university": "Technical University – Varna",
+    "city": "Varna",
+    "programs": [
+      { "degree": "Bachelor", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 }
     ]
   },
   {
-    id: "european-poly",
-    university: "European Polytechnical University",
-    city: "Other",
-    programs: [
-      { id: "engineering-bachelor", degree: "Bachelor", field: "Engineering / IT", tuition: 1650 },
-      { id: "engineering-master", degree: "Master", field: "Engineering / IT", tuition: 1650 }
+    "university": "New Bulgarian University",
+    "city": "Sofia",
+    "programs": [
+      { "degree": "Bachelor", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 }
+    ]
+  },
+  {
+    "university": "American University in Bulgaria",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 }
+    ]
+  },
+  {
+    "university": "University of National and World Economy",
+    "city": "Sofia",
+    "programs": [
+      { "degree": "Bachelor", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 }
+    ]
+  },
+  {
+    "university": "University of Economics – Varna",
+    "city": "Varna",
+    "programs": [
+      { "degree": "Bachelor", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Economics", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Finance", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 }
+    ]
+  },
+  {
+    "university": "European Polytechnical University",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Bachelor", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 }
+    ]
+  },
+  {
+    "university": "Varna Free University",
+    "city": "Varna",
+    "programs": [
+      { "degree": "Bachelor", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Business / Management", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Computer Science / IT", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Bachelor", "field": "Law", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Master", "field": "Law", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "PhD", "field": "Law", "tuition_min": 2500, "tuition_max": 4000 },
+      { "degree": "Bachelor", "field": "Tourism", "tuition_min": 2000, "tuition_max": 3500 },
+      { "degree": "Master", "field": "Tourism", "tuition_min": 2000, "tuition_max": 3500 },
+      { "degree": "PhD", "field": "Tourism", "tuition_min": 2000, "tuition_max": 3500 }
+    ]
+  },
+  {
+    "university": "University of Ruse",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 }
+    ]
+  },
+  {
+    "university": "Trakia University",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Master", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "PhD", "field": "Engineering", "tuition_min": 3000, "tuition_max": 4500 },
+      { "degree": "Bachelor", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "Master", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 },
+      { "degree": "PhD", "field": "Medicine", "tuition_min": 7500, "tuition_max": 8500 }
+    ]
+  },
+  {
+    "university": "Veliko Tarnovo University",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "Master", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "PhD", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 }
+    ]
+  },
+  {
+    "university": "South-West University \"Neofit Rilski\"",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "Master", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "PhD", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 }
+    ]
+  },
+  {
+    "university": "Preslavsky University",
+    "city": "Other",
+    "programs": [
+      { "degree": "Bachelor", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "Master", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 },
+      { "degree": "PhD", "field": "Education", "tuition_min": 2000, "tuition_max": 3000 }
     ]
   }
 ];
@@ -99,10 +225,14 @@ const formSchema = z.object({
 
 const CostCalculator = () => {
   const [calculations, setCalculations] = useState<{
-    tuitionYear: number;
+    tuitionMin: number;
+    tuitionMax: number;
+    tuitionAvg: number;
     livingMonth: number;
     livingYear: number;
-    totalYear: number;
+    totalYearMin: number;
+    totalYearMax: number;
+    totalYearAvg: number;
     city: string;
     universityName: string;
     programName: string;
@@ -122,18 +252,18 @@ const CostCalculator = () => {
   const selectedAccommodation = form.watch("accommodation");
 
   const getSelectedUniversityData = () => {
-    return universitiesData.find(uni => uni.id === selectedUniversity);
+    return universitiesData.find(uni => uni.university === selectedUniversity);
   };
 
   const getSelectedProgramData = () => {
     const university = getSelectedUniversityData();
     if (!university) return null;
-    return university.programs.find(program => program.id === selectedProgram);
+    return university.programs.find(program => `${program.degree}-${program.field}` === selectedProgram);
   };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const university = universitiesData.find(uni => uni.id === values.university);
-    const program = university?.programs.find(prog => prog.id === values.program);
+    const university = universitiesData.find(uni => uni.university === values.university);
+    const program = university?.programs.find(prog => `${prog.degree}-${prog.field}` === values.program);
     
     if (!university || !program) {
       console.error("University or program not found");
@@ -143,20 +273,29 @@ const CostCalculator = () => {
     const city = university.city as keyof typeof livingCostsByCity;
     const cityData = livingCostsByCity[city];
     
-    const tuitionYear = program.tuition;
+    const tuitionMin = program.tuition_min;
+    const tuitionMax = program.tuition_max;
+    const tuitionAvg = (tuitionMin + tuitionMax) / 2;
+    
     const accommodationCost = values.accommodation === "university" 
       ? cityData.university_accommodation
       : (cityData.private_accommodation.min + cityData.private_accommodation.max) / 2;
     
     const livingMonth = accommodationCost + cityData.food_and_misc;
     const livingYear = livingMonth * 12;
-    const totalYear = tuitionYear + livingYear;
+    const totalYearMin = tuitionMin + livingYear;
+    const totalYearMax = tuitionMax + livingYear;
+    const totalYearAvg = tuitionAvg + livingYear;
 
     setCalculations({
-      tuitionYear,
+      tuitionMin,
+      tuitionMax,
+      tuitionAvg,
       livingMonth,
       livingYear,
-      totalYear,
+      totalYearMin,
+      totalYearMax,
+      totalYearAvg,
       city: university.city,
       universityName: university.university,
       programName: `${program.degree} in ${program.field}`
@@ -214,7 +353,7 @@ const CostCalculator = () => {
                             </FormControl>
                             <SelectContent>
                               {universitiesData.map((university) => (
-                                <SelectItem key={university.id} value={university.id}>
+                                <SelectItem key={university.university} value={university.university}>
                                   {university.university}
                                 </SelectItem>
                               ))}
@@ -240,8 +379,11 @@ const CostCalculator = () => {
                               </FormControl>
                               <SelectContent>
                                 {getSelectedUniversityData()?.programs.map((program) => (
-                                  <SelectItem key={program.id} value={program.id}>
-                                    {program.degree} in {program.field} - ${program.tuition.toLocaleString()}/year
+                                  <SelectItem 
+                                    key={`${program.degree}-${program.field}`} 
+                                    value={`${program.degree}-${program.field}`}
+                                  >
+                                    {program.degree} in {program.field} - ${program.tuition_min.toLocaleString()} - ${program.tuition_max.toLocaleString()}/year
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -302,11 +444,14 @@ const CostCalculator = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-green-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-green-800 mb-2">Tuition Fee</h3>
-                      <p className="text-2xl font-bold text-green-600">
-                        ${calculations.tuitionYear.toLocaleString()}
+                      <h3 className="font-semibold text-green-800 mb-2">Tuition Fee Range</h3>
+                      <p className="text-lg font-bold text-green-600">
+                        ${calculations.tuitionMin.toLocaleString()} - ${calculations.tuitionMax.toLocaleString()}
                       </p>
                       <p className="text-sm text-green-600">per year</p>
+                      <p className="text-sm text-green-500 mt-1">
+                        Avg: ${calculations.tuitionAvg.toLocaleString()}
+                      </p>
                     </div>
                     
                     <div className="bg-orange-50 p-4 rounded-lg">
@@ -319,29 +464,37 @@ const CostCalculator = () => {
                   </div>
 
                   <div className="bg-purple-50 p-6 rounded-lg">
-                    <h3 className="font-semibold text-purple-800 mb-4">Annual Totals</h3>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Tuition Fee (1 year):</span>
-                        <span className="font-semibold">${calculations.tuitionYear.toLocaleString()}</span>
+                    <h3 className="font-semibold text-purple-800 mb-4">Annual Total Cost Range</h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Minimum Total:</span>
+                        <span className="font-bold text-lg text-purple-600">${calculations.totalYearMin.toLocaleString()}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Living Expenses (12 months):</span>
-                        <span className="font-semibold">${calculations.livingYear.toLocaleString()}</span>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Maximum Total:</span>
+                        <span className="font-bold text-lg text-purple-600">${calculations.totalYearMax.toLocaleString()}</span>
                       </div>
                       <hr className="my-2" />
-                      <div className="flex justify-between text-lg font-bold text-purple-800">
-                        <span>Total Annual Cost:</span>
-                        <span>${calculations.totalYear.toLocaleString()}</span>
+                      <div className="flex justify-between items-center text-lg font-bold text-purple-800 bg-purple-100 p-3 rounded">
+                        <span>Average Total:</span>
+                        <span>${calculations.totalYearAvg.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Living Costs Breakdown (Monthly)</h4>
-                    <div className="space-y-1 text-sm">
+                    <h4 className="font-semibold mb-2">Cost Breakdown Details</h4>
+                    <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span>Accommodation:</span>
+                        <span>Tuition (Min - Max):</span>
+                        <span>${calculations.tuitionMin.toLocaleString()} - ${calculations.tuitionMax.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Living Expenses (12 months):</span>
+                        <span>${calculations.livingYear.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>• Accommodation (monthly):</span>
                         <span>${
                           selectedAccommodation === "university" 
                             ? livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].university_accommodation
@@ -350,7 +503,7 @@ const CostCalculator = () => {
                         }</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Food & Miscellaneous:</span>
+                        <span>• Food & Miscellaneous (monthly):</span>
                         <span>${livingCostsByCity[calculations.city as keyof typeof livingCostsByCity].food_and_misc}</span>
                       </div>
                     </div>
