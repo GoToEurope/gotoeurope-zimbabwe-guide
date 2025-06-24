@@ -217,9 +217,27 @@ const livingCostsByCity = {
   }
 };
 
+// Get unique programs across all universities
+const getAllPrograms = () => {
+  const programsSet = new Set<string>();
+  universitiesData.forEach(university => {
+    university.programs.forEach(program => {
+      programsSet.add(`${program.degree}-${program.field}`);
+    });
+  });
+  return Array.from(programsSet).sort();
+};
+
+// Get universities that offer a specific program
+const getUniversitiesForProgram = (programKey: string) => {
+  return universitiesData.filter(university => 
+    university.programs.some(program => `${program.degree}-${program.field}` === programKey)
+  );
+};
+
 const formSchema = z.object({
-  university: z.string().min(1, "Please select a university"),
   program: z.string().min(1, "Please select a program"),
+  university: z.string().min(1, "Please select a university"),
   accommodation: z.enum(["university", "private"], { required_error: "Please select accommodation type" })
 });
 
@@ -241,15 +259,21 @@ const CostCalculator = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      university: "",
       program: "",
+      university: "",
       accommodation: "university"
     }
   });
 
-  const selectedUniversity = form.watch("university");
   const selectedProgram = form.watch("program");
+  const selectedUniversity = form.watch("university");
   const selectedAccommodation = form.watch("accommodation");
+
+  // Reset university when program changes
+  const handleProgramChange = (value: string) => {
+    form.setValue("program", value);
+    form.setValue("university", ""); // Reset university selection
+  };
 
   const getSelectedUniversityData = () => {
     return universitiesData.find(uni => uni.university === selectedUniversity);
@@ -341,22 +365,25 @@ const CostCalculator = () => {
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
                       control={form.control}
-                      name="university"
+                      name="program"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Select University *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormLabel>Select Program *</FormLabel>
+                          <Select onValueChange={handleProgramChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Choose a university" />
+                                <SelectValue placeholder="Choose your field of study" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {universitiesData.map((university) => (
-                                <SelectItem key={university.university} value={university.university}>
-                                  {university.university}
-                                </SelectItem>
-                              ))}
+                              {getAllPrograms().map((programKey) => {
+                                const [degree, field] = programKey.split('-');
+                                return (
+                                  <SelectItem key={programKey} value={programKey}>
+                                    {degree} in {field}
+                                  </SelectItem>
+                                );
+                              })}
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -364,28 +391,28 @@ const CostCalculator = () => {
                       )}
                     />
 
-                    {selectedUniversity && (
+                    {selectedProgram && (
                       <FormField
                         control={form.control}
-                        name="program"
+                        name="university"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Select Program *</FormLabel>
+                            <FormLabel>Select University *</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Choose a program" />
+                                  <SelectValue placeholder="Choose a university" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {getSelectedUniversityData()?.programs.map((program) => (
-                                  <SelectItem 
-                                    key={`${program.degree}-${program.field}`} 
-                                    value={`${program.degree}-${program.field}`}
-                                  >
-                                    {program.degree} in {program.field} - ${program.tuition_min.toLocaleString()} - ${program.tuition_max.toLocaleString()}/year
-                                  </SelectItem>
-                                ))}
+                                {getUniversitiesForProgram(selectedProgram).map((university) => {
+                                  const program = university.programs.find(p => `${p.degree}-${p.field}` === selectedProgram);
+                                  return (
+                                    <SelectItem key={university.university} value={university.university}>
+                                      {university.university} - ${program?.tuition_min.toLocaleString()} - ${program?.tuition_max.toLocaleString()}/year
+                                    </SelectItem>
+                                  );
+                                })}
                               </SelectContent>
                             </Select>
                             <FormMessage />
