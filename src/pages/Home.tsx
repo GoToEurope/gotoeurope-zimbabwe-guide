@@ -6,6 +6,7 @@ import TuitionComparisonTable from "@/components/home/TuitionComparisonTable";
 import LivingCostComparisonTable from "@/components/home/LivingCostComparisonTable";
 import AdvantagesGrid from "@/components/home/AdvantagesGrid";
 import CostScenario from "@/components/home/CostScenario";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

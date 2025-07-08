@@ -2,6 +2,8 @@ import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
 const Universities = () => {
   const universities = [{
     name: "Sofia University 'St. Kliment Ohridski'",
@@ -109,6 +111,8 @@ const Universities = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>;
 };
+
 export default Universities;

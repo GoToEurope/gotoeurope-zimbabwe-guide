@@ -1,7 +1,9 @@
+
 import { GraduationCap, Plane, Users, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Services = () => {
   const services = [
@@ -95,6 +97,7 @@ const Services = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
