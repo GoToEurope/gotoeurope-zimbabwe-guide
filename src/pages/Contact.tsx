@@ -30,6 +30,10 @@ const Contact = () => {
     }
   ];
 
+  const handleWhatsAppClick = () => {
+    window.open("https://wa.me/263719118661", "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -52,13 +56,13 @@ const Contact = () => {
               </CardContent>
             </Card>
             
-            <Card className="text-center p-8 hover:shadow-lg transition-shadow duration-300">
+            <Card className="text-center p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={handleWhatsAppClick}>
               <CardContent className="space-y-4">
                 <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
                   <Phone className="h-8 w-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900">WhatsApp</h3>
-                <p className="text-gray-600">+263 719118661</p>
+                <p className="text-gray-600 hover:text-green-600 transition-colors">+263 719118661</p>
               </CardContent>
             </Card>
             
